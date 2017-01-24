@@ -1,7 +1,8 @@
 /** This module is for demo purposes only */
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { TinymceModule } from '../../src/angular2-tinymce.module';
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -9,7 +10,10 @@ import { AppComponent } from './app.component';
 		AppComponent
 	],
 	imports: [
-		BrowserModule
+		BrowserModule,
+		TinymceModule,
+		FormsModule,
+		ReactiveFormsModule
 	],
 	bootstrap: [
 		AppComponent

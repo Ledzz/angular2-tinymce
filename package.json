@@ -1,7 +1,7 @@
 {
-  "name": "angular2-template-blueprint",
+  "name": "angular2-tinymce",
   "version": "1.0.0",
-  "description": "A blueprint for creating angular2 modules, based on https://github.com/qdouble/angular-webpack2-starter",
+  "description": "Angular 2 component for TinyMCE MCE WYSIWYG editor",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,7 +12,10 @@
     "angular",
     "component",
     "module",
-    "blueprint"
+    "tinymce",
+    "wysiwyg",
+    "form-control",
+    "ng-model"
   ],
   "author": "Ledzz",
   "license": "ISC",
@@ -27,6 +30,7 @@
     "core-js": "^2.4.1",
     "raw-loader": "^0.5.1",
     "rxjs": "^5.0.3",
+    "tinymce": "^4.5.2",
     "zone.js": "^0.7.6"
   },
   "devDependencies": {
@@ -48,12 +52,12 @@
     "webpack-md5-hash": "0.0.5"
   },
   "bugs": {
-    "web": "https://github.com/Ledzz/angular2-template-blueprint/issues"
+    "web": "https://github.com/Ledzz/angular2-tinymce/issues"
   },
   "repositories": [
     {
       "type": "git",
-      "url": "https://github.com/Ledzz/angular2-template-blueprint.git"
+      "url": "https://github.com/Ledzz/angular2-tinymce.git"
     }
   ]
 }
