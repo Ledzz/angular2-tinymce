@@ -33,7 +33,6 @@ export class TinymceComponent implements ControlValueAccessor, AfterViewInit, On
 	private onChangeCallback: (_: any) => void = noop;
 	private innerValue: string;
 
-	public fileUploadCallback;
 	constructor(private zone: NgZone) {
 	}
 
