@@ -70,7 +70,6 @@ export class TinymceComponent implements ControlValueAccessor, AfterViewInit, On
 			this.innerValue = v;
 			this.zone.run(() => {
 				this.onChangeCallback(v);
-				console.log(this.innerValue);
 			});
 			
 		}
