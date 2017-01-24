@@ -40,7 +40,7 @@ export class TinymceComponent implements ControlValueAccessor, AfterViewInit, On
 	ngAfterViewInit() {
 		tinymce.init({
 			selector: '#' + this.elementId,
-			plugins: ['link', 'paste', 'table', 'advlist', 'autoresize', 'image', 'lists', 'imagetools', 'code'],
+			plugins: ['link', 'paste', 'table', 'advlist', 'autoresize', 'lists',, 'code'],
 			skin_url: '/assets/tinymce/skins/lightgray',
 			setup: editor => {
 				this.editor = editor;
