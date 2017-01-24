@@ -1,0 +1,1 @@
+export { TinymceModule } from './src/angular2-tinymce.module';
