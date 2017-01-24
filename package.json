@@ -54,10 +54,8 @@
   "bugs": {
     "web": "https://github.com/Ledzz/angular2-tinymce/issues"
   },
-  "repositories": [
-    {
-      "type": "git",
-      "url": "https://github.com/Ledzz/angular2-tinymce.git"
-    }
-  ]
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ledzz/angular2-tinymce.git"
+  }
 }
