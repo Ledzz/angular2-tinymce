@@ -1,1 +1,1 @@
-export { TinymceModule } from './src/angular2-tinymce.module';
+export * from './src/angular2-tinymce.module';
