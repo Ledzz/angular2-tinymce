@@ -1,5 +1,6 @@
-import { Component, OnDestroy, AfterViewInit, forwardRef, NgZone } from '@angular/core';
+import { Component, OnDestroy, AfterViewInit, forwardRef, NgZone, Inject } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { TinymceOptions } from './angular2-tinymce.config.interface';
 
 import tinymce from 'tinymce/tinymce.js';
 import 'tinymce/themes/modern/theme';
@@ -33,25 +34,40 @@ export class TinymceComponent implements ControlValueAccessor, AfterViewInit, On
 	private onChangeCallback: (_: any) => void = noop;
 	private innerValue: string;
 
-	constructor(private zone: NgZone) {
+	private options: any;
+	constructor(
+		private zone: NgZone,
+		@Inject('TINYMCE_CONFIG') private config: TinymceOptions
+	) {
+		this.options = Object.assign(new TinymceOptions(), this.config);
+		this.options.selector = '#' + this.elementId;
+		this.options.setup = editor => {
+			this.editor = editor;
+			editor.on('change keyup', () => {
+				const content = editor.getContent();
+				this.value = content;
+			});
+			if (typeof this.config.setup === 'function') {
+				this.config.setup(editor);
+			}
+		}
+		this.options.init_instance_callback = editor => {
+			editor && this.value && editor.setContent(this.value)
+			if (typeof this.config.init_instance_callback === 'function') {
+				this.config.init_instance_callback(editor);
+			}
+		}
+		if (this.config.auto_focus) {
+			this.options.auto_focus = this.elementId;
+		}
 	}
 
+
 	ngAfterViewInit() {
-		tinymce.init({
-			selector: '#' + this.elementId,
-			plugins: ['link', 'paste', 'table', 'advlist', 'autoresize', 'lists',, 'code'],
-			skin_url: '/assets/tinymce/skins/lightgray',
-			setup: editor => {
-				this.editor = editor;
-				editor.on('change keyup', () => {
-					const content = editor.getContent();
-					this.value = content;
-				});
-			},
-			init_instance_callback: editor => {
-				editor && this.value && editor.setContent(this.value)
-			}
-		});
+		if (this.options.baseURL) {
+			tinymce.baseURL = this.options.baseURL;
+		}
+		tinymce.init(this.options);
 	}
 
 	ngOnDestroy() {

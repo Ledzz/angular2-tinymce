@@ -11,9 +11,11 @@ import { AppComponent } from './app.component';
 	],
 	imports: [
 		BrowserModule,
-		TinymceModule,
 		FormsModule,
-		ReactiveFormsModule
+		ReactiveFormsModule,
+		TinymceModule.withConfig({
+			plugins: ['lists', 'code']
+		})
 	],
 	bootstrap: [
 		AppComponent
