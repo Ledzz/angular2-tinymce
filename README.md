@@ -23,7 +23,10 @@ import { TinymceModule } from 'angular2-tinymce';
 export class AppModule { }
 ```
 
-Upcoming features:
+## Upcoming features:
 - [ ] Tinymce configuration
+- [ ] Add github pages
 - [ ] File uploading
 - [ ] Events
+- [ ] Aot support
+- [ ] Tests
