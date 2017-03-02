@@ -2,6 +2,8 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { TinymceComponent } from './angular2-tinymce.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TinymceOptions } from './angular2-tinymce.config.interface';
+import { TinymceDefaultOptions } from './angular2-tinymce.default';
+
 import tinymce from 'tinymce/tinymce.js';
 
 @NgModule({
@@ -16,7 +18,7 @@ import tinymce from 'tinymce/tinymce.js';
 		TinymceComponent
 	],
 	providers: [
-		{ provide: 'TINYMCE_CONFIG', useClass: TinymceOptions }
+		{ provide: 'TINYMCE_CONFIG', useClass: TinymceDefaultOptions }
 	]
 })
 export class TinymceModule {

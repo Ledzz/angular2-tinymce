@@ -1,5 +1,6 @@
 import { Component, OnDestroy, AfterViewInit, forwardRef, NgZone, Inject } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { TinymceDefaultOptions } from './angular2-tinymce.default';
 import { TinymceOptions } from './angular2-tinymce.config.interface';
 
 import tinymce from 'tinymce/tinymce.js';
@@ -39,7 +40,7 @@ export class TinymceComponent implements ControlValueAccessor, AfterViewInit, On
 		private zone: NgZone,
 		@Inject('TINYMCE_CONFIG') private config: TinymceOptions
 	) {
-		this.options = Object.assign(new TinymceOptions(), this.config);
+		this.options = Object.assign(new TinymceDefaultOptions(), this.config);
 		this.options.selector = '#' + this.elementId;
 		this.options.setup = editor => {
 			this.editor = editor;
