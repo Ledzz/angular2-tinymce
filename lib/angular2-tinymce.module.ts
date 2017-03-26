@@ -18,9 +18,9 @@ import tinymce from 'tinymce/tinymce.js';
 	exports: [
 		TinymceComponent
 	],
-	// providers: [
-	// 	{ provide: CONFIG_TOKEN, useClass: TinymceDefaultOptions }
-	// ]
+	providers: [
+		{ provide: 'tinymce-config', useClass: TinymceDefaultOptions }
+	]
 })
 export class TinymceModule {
 	static withConfig(userConfig: TinymceOptions = {}): ModuleWithProviders {

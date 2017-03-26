@@ -7,6 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 import { NgModule } from '@angular/core';
 import { TinymceComponent } from './angular2-tinymce.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TinymceDefaultOptions } from './angular2-tinymce.default';
 import tinymce from 'tinymce/tinymce.js';
 var TinymceModule = TinymceModule_1 = (function () {
     function TinymceModule() {
@@ -34,6 +35,9 @@ TinymceModule = TinymceModule_1 = __decorate([
         exports: [
             TinymceComponent
         ],
+        providers: [
+            { provide: 'tinymce-config', useClass: TinymceDefaultOptions }
+        ]
     })
 ], TinymceModule);
 export { TinymceModule };
