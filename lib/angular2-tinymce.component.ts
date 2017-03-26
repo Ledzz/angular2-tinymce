@@ -1,9 +1,7 @@
-import { Component, OnDestroy, AfterViewInit, forwardRef, NgZone, Inject, OpaqueToken } from '@angular/core';
+import { Component, OnDestroy, AfterViewInit, forwardRef, NgZone, Inject } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { TinymceDefaultOptions } from './angular2-tinymce.default';
 import { TinymceOptions } from './angular2-tinymce.config.interface';
-// import { APP_CONF/IG } from './angular2-tinymce.module';
-export const CONFIG_TOKEN = new OpaqueToken("angular2-tinymce.config");
 
 import tinymce from 'tinymce/tinymce.js';
 import 'tinymce/themes/modern/theme';
@@ -40,7 +38,7 @@ export class TinymceComponent implements ControlValueAccessor, AfterViewInit, On
 	private options: any;
 	constructor(
 		private zone: NgZone,
-		@Inject(CONFIG_TOKEN) private config: TinymceOptions
+		@Inject('tinymce-config') private config: TinymceOptions
 	) {
 		this.options = Object.assign(new TinymceDefaultOptions(), this.config);
 		this.options.selector = '#' + this.elementId;

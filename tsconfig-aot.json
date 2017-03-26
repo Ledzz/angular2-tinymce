@@ -12,5 +12,8 @@
   },
   "files": [
     "lib/angular2-tinymce.module.ts"
-  ]
+  ],
+  "angularCompilerOptions": {
+    "skipTemplateCodegen": true
+  }
 }
