@@ -1,5 +1,5 @@
 # angular2-tinymce
-
+`Compatible with Angular 4!`
 ## Usage
 
 First, install package via npm:
@@ -17,7 +17,7 @@ import { TinymceModule } from 'angular2-tinymce';
 @NgModule({
   imports: [
     ...
-    TinymceModule
+    TinymceModule.withConfig()
   ],
   ...
 })
@@ -89,7 +89,7 @@ Please feel free to leave your PRs, issues, feature requests.
 ## Upcoming features
 - [x] Tinymce configuration
 - [ ] Per-editor configuration
-- [ ] Add github pages
+- [ ] Add github pages demo
 - [ ] File uploading
 - [ ] Events
 - [ ] Aot support
