@@ -1,6 +1,6 @@
 {
   "name": "angular2-tinymce",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Angular 2 component for TinyMCE MCE WYSIWYG editor",
   "main": "dist/angular2-tinymce.module",
   "scripts": {
