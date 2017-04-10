@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var angular2_tinymce_default_1 = require("./angular2-tinymce.default");
-require("tinymce/tinymce");
+require("tinymce/tinymce.min");
 require("tinymce/themes/modern/theme");
 require("tinymce/plugins/link/plugin.js");
 require("tinymce/plugins/paste/plugin.js");

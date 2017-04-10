@@ -3,7 +3,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { TinymceDefaultOptions } from './angular2-tinymce.default';
 import { TinymceOptions } from './angular2-tinymce.config.interface';
 
-import 'tinymce/tinymce';
+import 'tinymce/tinymce.min';
 declare var tinymce: any;
 
 import 'tinymce/themes/modern/theme';

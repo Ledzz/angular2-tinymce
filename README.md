@@ -1,6 +1,6 @@
 # angular2-tinymce
 
-`Compatible with Angular 4!`
+`Now compatible with Angular 4.0.1 with AOT support!`
 
 ## Usage
 
@@ -9,17 +9,17 @@ First, install package via npm:
 npm install --save angular2-tinymce
 ```
 
-Then copy lightgray skin from [here] (https://github.com/Ledzz/angular2-tinymce/tree/master/demo/assets/tinymce/skins/lightgray) to the `/assets` folder. So, i.e. there must be available `/assets/tinymce/skins/lightgray/skin.min.css` file.
+Then copy lightgray skin from [here] (tinymce/skins/lightgray) to the `/assets` folder. So, i.e. there must be available `/assets/tinymce/skins/lightgray/skin.min.css` file.
 You can override skin path by specifying `skin_url` option (default `/assets/tinymce/skins/lightgray`).
 
-Import `TinymceModule` in you `app.module.ts`:
+Import `TinymceModule` in you `app.module.ts` like this:
 ```typescript
 import { TinymceModule } from 'angular2-tinymce';
 
 @NgModule({
   imports: [
     ...
-    TinymceModule.withConfig()
+    TinymceModule.withConfig({})
   ],
   ...
 })
@@ -58,7 +58,7 @@ Please note that config is extended a bit.
 - `auto_focus` option is boolean instead of string.
 - You cannot specify `selector` option (and you don't need to, right?).
 - `setup` and `init_instance_callback` are executed after the components'.
-- You can view more info about supported options [here] (https://github.com/Ledzz/angular2-tinymce/blob/master/src/angular2-tinymce.config.interface.ts)
+- You can view more info about supported options [here] (src/angular2-tinymce.config.interface.ts)
 
 ## Plugins
 If you need other plugins than standart (`link paste table advlist autoresize lists code`) you should create plugins folder in the `baseURL` (default '/assets/tinymce') and place your plugins in it.
@@ -90,9 +90,9 @@ Please feel free to leave your PRs, issues, feature requests.
 
 ## Upcoming features
 - [x] Tinymce configuration
+- [x] Aot support
 - [ ] Per-editor configuration
 - [ ] Add github pages demo
 - [ ] File uploading
 - [ ] Events
-- [ ] Aot support
 - [ ] Tests

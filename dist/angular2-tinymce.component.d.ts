@@ -1,7 +1,7 @@
 import { OnDestroy, AfterViewInit, NgZone } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { TinymceOptions } from './angular2-tinymce.config.interface';
-import 'tinymce/tinymce';
+import 'tinymce/tinymce.min';
 import 'tinymce/themes/modern/theme';
 import 'tinymce/plugins/link/plugin.js';
 import 'tinymce/plugins/paste/plugin.js';
