@@ -1,0 +1,45 @@
+{
+  "name": "angular2-tinymce",
+  "version": "2.0.1",
+  "description": "Angular component for TinyMCE MCE WYSIWYG editor",
+  "scripts": {
+    "build": "ngc -p ./tsconfig.json && tsc -p ./tsconfig.json",
+    "prebuild": "rimraf ./dist ./compiled && mkdir dist"
+  },
+  "main": "dist/index.js",
+  "keywords": [
+    "angular4",
+    "angular2",
+    "angular",
+    "component",
+    "module",
+    "tinymce",
+    "wysiwyg",
+    "form-control",
+    "ng-model"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ledzz/angular2-tinymce.git"
+  },
+  "bugs": {
+    "web": "https://github.com/Ledzz/angular2-tinymce/issues"
+  },
+  "author": "Ledzz",
+  "license": "ISC",
+  "devDependencies": {
+    "@angular/common": "^4.0.1",
+    "@angular/compiler": "^4.0.1",
+    "@angular/compiler-cli": "^4.0.1",
+    "@angular/core": "^4.0.1",
+    "@angular/forms": "^4.0.1",
+    "@angular/platform-browser": "^4.0.1",
+    "@angular/platform-server": "^4.0.1",
+    "rimraf": "^2.6.1",
+    "rxjs": "^5.2.0",
+    "typescript": "^2.2.2",
+    "zone.js": "^0.8.5"
+  },
+  "typings": "dist/index.d.ts",
+  "dependencies": {}
+}
