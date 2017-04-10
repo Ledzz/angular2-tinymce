@@ -8,6 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
+var angular2_tinymce_component_1 = require("./angular2-tinymce.component");
+var forms_1 = require("@angular/forms");
 var TinymceModule = (function () {
     function TinymceModule() {
     }
@@ -15,7 +17,17 @@ var TinymceModule = (function () {
 }());
 TinymceModule = __decorate([
     core_1.NgModule({
-        imports: [common_1.CommonModule],
+        imports: [
+            common_1.CommonModule,
+            forms_1.FormsModule,
+            forms_1.ReactiveFormsModule
+        ],
+        declarations: [
+            angular2_tinymce_component_1.TinymceComponent
+        ],
+        exports: [
+            angular2_tinymce_component_1.TinymceComponent
+        ]
     })
 ], TinymceModule);
 exports.TinymceModule = TinymceModule;

@@ -41,5 +41,7 @@
     "zone.js": "^0.8.5"
   },
   "typings": "dist/index.d.ts",
-  "dependencies": {}
+  "dependencies": {
+    "tinymce": "^4.5.6"
+  }
 }
