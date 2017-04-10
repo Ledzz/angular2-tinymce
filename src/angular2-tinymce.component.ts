@@ -3,7 +3,9 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { TinymceDefaultOptions } from './angular2-tinymce.default';
 import { TinymceOptions } from './angular2-tinymce.config.interface';
 
-import tinymce from 'tinymce/tinymce.min.js';
+import 'tinymce/tinymce';
+declare var tinymce: any;
+
 import 'tinymce/themes/modern/theme';
 import 'tinymce/plugins/link/plugin.js';
 import 'tinymce/plugins/paste/plugin.js';
@@ -18,7 +20,7 @@ const noop = () => {
 
 @Component({
 	selector: 'app-tinymce',
-	templateUrl: './angular2-tinymce.component.html',
+	template: '<div id="{{elementId}}"></div>',
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { TinymceComponent } from './angular2-tinymce.component';
@@ -17,6 +17,18 @@ import { TinymceDefaultOptions } from './angular2-tinymce.default';
     ],
     exports: [
 		TinymceComponent
+	],
+	providers: [
+		{ provide: 'TINYMCE_CONFIG', useClass: TinymceDefaultOptions }
 	]
 })
-export class TinymceModule { }
+export class TinymceModule {
+	static withConfig(userConfig: TinymceOptions = {}): ModuleWithProviders {
+		return {
+			ngModule: TinymceModule,
+			providers: [
+				{ provide: 'TINYMCE_CONFIG', useValue: userConfig }
+			]
+		}
+	}
+}

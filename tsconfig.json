@@ -15,7 +15,6 @@
     "target": "es5",
     "inlineSources": false
   },
-
   "files": [
     "./src/index.ts"
   ],

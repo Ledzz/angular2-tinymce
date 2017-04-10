@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var angular2_tinymce_default_1 = require("./angular2-tinymce.default");
-var tinymce_min_js_1 = require("tinymce/tinymce.min.js");
+require("tinymce/tinymce");
 require("tinymce/themes/modern/theme");
 require("tinymce/plugins/link/plugin.js");
 require("tinymce/plugins/paste/plugin.js");
@@ -58,12 +58,12 @@ var TinymceComponent = TinymceComponent_1 = (function () {
     }
     TinymceComponent.prototype.ngAfterViewInit = function () {
         if (this.options.baseURL) {
-            tinymce_min_js_1.default.baseURL = this.options.baseURL;
+            tinymce.baseURL = this.options.baseURL;
         }
-        tinymce_min_js_1.default.init(this.options);
+        tinymce.init(this.options);
     };
     TinymceComponent.prototype.ngOnDestroy = function () {
-        tinymce_min_js_1.default.remove(this.editor);
+        tinymce.remove(this.editor);
     };
     Object.defineProperty(TinymceComponent.prototype, "value", {
         // get accessor
@@ -102,7 +102,7 @@ var TinymceComponent = TinymceComponent_1 = (function () {
 TinymceComponent = TinymceComponent_1 = __decorate([
     core_1.Component({
         selector: 'app-tinymce',
-        templateUrl: './angular2-tinymce.component.html',
+        template: '<div id="{{elementId}}"></div>',
         providers: [
             {
                 provide: forms_1.NG_VALUE_ACCESSOR,
