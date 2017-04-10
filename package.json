@@ -1,6 +1,6 @@
 {
   "name": "angular2-tinymce",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Angular component for TinyMCE MCE WYSIWYG editor",
   "scripts": {
     "build": "ngc -p ./tsconfig.json && tsc -p ./tsconfig.json",
