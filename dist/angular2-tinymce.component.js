@@ -57,10 +57,14 @@ var TinymceComponent = TinymceComponent_1 = (function () {
         }
     }
     TinymceComponent.prototype.ngAfterViewInit = function () {
+        var _this = this;
         if (this.options.baseURL) {
             tinymce.baseURL = this.options.baseURL;
         }
-        tinymce.init(this.options);
+        tinymce.remove();
+        setTimeout(function () {
+            tinymce.init(_this.options);
+        });
     };
     TinymceComponent.prototype.ngOnDestroy = function () {
         tinymce.remove(this.editor);
