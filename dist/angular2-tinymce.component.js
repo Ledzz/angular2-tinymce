@@ -88,6 +88,9 @@ var TinymceComponent = TinymceComponent_1 = (function () {
     TinymceComponent.prototype.writeValue = function (value) {
         if (value !== this.innerValue) {
             this.innerValue = value;
+            if (!value) {
+                value = '';
+            }
             this.editor && this.editor.setContent(value);
         }
     };
