@@ -96,6 +96,9 @@ export class TinymceComponent implements ControlValueAccessor, AfterViewInit, On
 	writeValue(value: any) {
 		if (value !== this.innerValue) {
 			this.innerValue = value;
+			if(!value) {
+				value = '';
+			}
 			this.editor && this.editor.setContent(value);
 		}
 	}
