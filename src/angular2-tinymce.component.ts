@@ -30,7 +30,7 @@ const noop = () => {
 	]
 })
 export class TinymceComponent implements ControlValueAccessor, AfterViewInit, OnDestroy {
-	public elementId: string = 'tiny-'+Math.random().toString(36).substring(2);
+	public elementId: string = 'tiny-' + Math.random().toString(36).substring(2);
 	public editor: any;
 
 	private onTouchedCallback: () => void = noop;
@@ -70,7 +70,10 @@ export class TinymceComponent implements ControlValueAccessor, AfterViewInit, On
 		if (this.options.baseURL) {
 			tinymce.baseURL = this.options.baseURL;
 		}
-		tinymce.init(this.options);
+		tinymce.remove();
+		setTimeout(() => {
+			tinymce.init(this.options);
+		});
 	}
 
 	ngOnDestroy() {
@@ -89,7 +92,7 @@ export class TinymceComponent implements ControlValueAccessor, AfterViewInit, On
 			this.zone.run(() => {
 				this.onChangeCallback(v);
 			});
-			
+
 		}
 	}
 	// From ControlValueAccessor interface
