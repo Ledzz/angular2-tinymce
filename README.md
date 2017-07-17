@@ -85,6 +85,38 @@ Alternativaly you can `npm install tinymce --save` and import plugins like that:
 ```typescript
 import 'tinymce/plugins/emoticons/plugin.js';
 ```
+
+## SystemJS configuration
+When using SystemJS, you need to load tinymce plugins as global shim modules instead of AMD modules (default).
+Update the file systemjs.config.js as following:
+```typescript
+System.config({
+  meta: {
+    ...
+    'node_modules/tinymce/plugins/advlist/plugin.js': { format: 'global' },
+    'node_modules/tinymce/plugins/autoresize/plugin.js': { format: 'global' },
+    'node_modules/tinymce/plugins/code/plugin.js': { format: 'global' },
+    'node_modules/tinymce/plugins/link/plugin.js': { format: 'global' },
+    'node_modules/tinymce/plugins/lists/plugin.js': { format: 'global' },
+    'node_modules/tinymce/plugins/paste/plugin.js': { format: 'global' },
+    'node_modules/tinymce/plugins/table/plugin.js': { format: 'global' },
+    'node_modules/tinymce/themes/modern/theme.js': { format: 'global' },	
+  },
+  map: {
+    ...
+    'angular2-tinymce': 'node_modules/angular2-tinymce/dist',
+    'tinymce': 'node_modules/tinymce',
+  },
+  packages: {
+    ...
+    'angular2-tinymce': { main: 'index.js', defaultExtension: 'js' },
+    'tinymce': { defaultExtension: 'js' },
+  }
+});
+```
+
+Note that tinymce npm package should be loaded in addition to angular2-tinymce when using SystemJS. Otherwise, it won't be able to load the plugins.
+
 ## Contributing
 Please feel free to leave your PRs, issues, feature requests.
 
