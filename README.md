@@ -9,7 +9,7 @@ First, install package via npm:
 npm install --save angular2-tinymce
 ```
 
-Then copy lightgray skin from [here] (tinymce/skins/lightgray) to the `/assets` folder. So, i.e. there must be available `/assets/tinymce/skins/lightgray/skin.min.css` file.
+Then copy lightgray skin files from [here](https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.6.4/skins/lightgray/skin.min.css) and [here](https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.6.4/skins/lightgray/content.min.css) to the `/assets` folder. So, i.e. there must be available `/assets/tinymce/skins/lightgray/skin.min.css` and `/assets/tinymce/skins/lightgray/content.min.css` file.
 You can override skin path by specifying `skin_url` option (default `/assets/tinymce/skins/lightgray`).
 
 Import `TinymceModule` in you `app.module.ts` like this:
