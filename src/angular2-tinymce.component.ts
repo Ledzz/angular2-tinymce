@@ -45,7 +45,6 @@ export class TinymceComponent implements ControlValueAccessor, AfterViewInit, On
 		this.options = Object.assign(new TinymceDefaultOptions(), this.config);
 		this.options.selector = '#' + this.elementId;
 		this.options.setup = editor => {
-			this.editor = editor;
 			editor.on('change keyup', () => {
 				const content = editor.getContent();
 				this.value = content;
@@ -59,6 +58,7 @@ export class TinymceComponent implements ControlValueAccessor, AfterViewInit, On
 			if (typeof this.config.init_instance_callback === 'function') {
 				this.config.init_instance_callback(editor);
 			}
+			this.editor = editor;
 		}
 		if (this.config.auto_focus) {
 			this.options.auto_focus = this.elementId;
