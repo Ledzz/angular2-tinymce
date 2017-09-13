@@ -36,7 +36,7 @@ var TinymceComponent = /** @class */ (function () {
         //
     }
     TinymceComponent_1 = TinymceComponent;
-    TinymceComponent.prototype.ngOnInit = function () {
+    TinymceComponent.prototype.ngAfterViewInit = function () {
         var _this = this;
         this.mergedOptions = Object.assign(new angular2_tinymce_default_1.TinymceDefaultOptions(), this.options, this.config);
         this.mergedOptions.selector = '#' + this.elementId;
@@ -58,8 +58,6 @@ var TinymceComponent = /** @class */ (function () {
         if (this.options.auto_focus) {
             this.mergedOptions.auto_focus = this.elementId;
         }
-    };
-    TinymceComponent.prototype.ngAfterViewInit = function () {
         if (this.mergedOptions.baseURL) {
             tinymce.baseURL = this.mergedOptions.baseURL;
         }
@@ -104,7 +102,7 @@ var TinymceComponent = /** @class */ (function () {
         this.onTouchedCallback = fn;
     };
     __decorate([
-        core_1.Input('config'),
+        core_1.Input(),
         __metadata("design:type", Object)
     ], TinymceComponent.prototype, "config", void 0);
     TinymceComponent = TinymceComponent_1 = __decorate([
