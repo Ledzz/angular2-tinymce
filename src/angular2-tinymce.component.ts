@@ -102,7 +102,7 @@ export class TinymceComponent implements ControlValueAccessor, OnInit, AfterView
 			if(!value) {
 				value = '';
 			}
-			this.editor && this.editor.setContent(value);
+			this.editor && this.editor.initialized && this.editor.setContent(value);
 		}
 	}
 

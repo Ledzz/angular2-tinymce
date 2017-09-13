@@ -94,7 +94,7 @@ var TinymceComponent = /** @class */ (function () {
             if (!value) {
                 value = '';
             }
-            this.editor && this.editor.setContent(value);
+            this.editor && this.editor.initialized && this.editor.setContent(value);
         }
     };
     TinymceComponent.prototype.registerOnChange = function (fn) {
