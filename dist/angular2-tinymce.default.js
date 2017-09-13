@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var TinymceDefaultOptions = (function () {
+var TinymceDefaultOptions = /** @class */ (function () {
     function TinymceDefaultOptions() {
         this.plugins = [
             'link',

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, AfterViewInit, forwardRef, NgZone, Inject } from '@angular/core';
+import {Component, OnDestroy, AfterViewInit, forwardRef, NgZone, Inject, Input} from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { TinymceDefaultOptions } from './angular2-tinymce.default';
 import { TinymceOptions } from './angular2-tinymce.config.interface';
@@ -32,6 +32,7 @@ const noop = () => {
 export class TinymceComponent implements ControlValueAccessor, AfterViewInit, OnDestroy {
 	public elementId: string = 'tiny-'+Math.random().toString(36).substring(2);
 	public editor: any;
+	@Input() config: TinymceOptions;
 
 	private onTouchedCallback: () => void = noop;
 	private onChangeCallback: (_: any) => void = noop;
@@ -40,9 +41,9 @@ export class TinymceComponent implements ControlValueAccessor, AfterViewInit, On
 	private options: any;
 	constructor(
 		private zone: NgZone,
-		@Inject('TINYMCE_CONFIG') private config: TinymceOptions
+		@Inject('TINYMCE_CONFIG') private defaultConfig: TinymceOptions
 	) {
-		this.options = Object.assign(new TinymceDefaultOptions(), this.config);
+		this.options = Object.assign(new TinymceDefaultOptions(), this.defaultConfig, this.config);
 		this.options.selector = '#' + this.elementId;
 		this.options.setup = editor => {
 			this.editor = editor;
@@ -50,17 +51,17 @@ export class TinymceComponent implements ControlValueAccessor, AfterViewInit, On
 				const content = editor.getContent();
 				this.value = content;
 			});
-			if (typeof this.config.setup === 'function') {
-				this.config.setup(editor);
+			if (typeof this.options.setup === 'function') {
+				this.options.setup(editor);
 			}
 		}
 		this.options.init_instance_callback = editor => {
 			editor && this.value && editor.setContent(this.value)
-			if (typeof this.config.init_instance_callback === 'function') {
-				this.config.init_instance_callback(editor);
+			if (typeof this.options.init_instance_callback === 'function') {
+				this.options.init_instance_callback(editor);
 			}
 		}
-		if (this.config.auto_focus) {
+		if (this.options.auto_focus) {
 			this.options.auto_focus = this.elementId;
 		}
 	}

@@ -12,14 +12,15 @@ import 'tinymce/plugins/lists/plugin.js';
 import 'tinymce/plugins/code/plugin.js';
 export declare class TinymceComponent implements ControlValueAccessor, AfterViewInit, OnDestroy {
     private zone;
-    private config;
+    private defaultConfig;
     elementId: string;
     editor: any;
+    config: TinymceOptions;
     private onTouchedCallback;
     private onChangeCallback;
     private innerValue;
     private options;
-    constructor(zone: NgZone, config: TinymceOptions);
+    constructor(zone: NgZone, defaultConfig: TinymceOptions);
     ngAfterViewInit(): void;
     ngOnDestroy(): void;
     value: any;
