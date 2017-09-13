@@ -104,7 +104,7 @@ var TinymceComponent = /** @class */ (function () {
         this.onTouchedCallback = fn;
     };
     __decorate([
-        core_1.Input(),
+        core_1.Input('config'),
         __metadata("design:type", Object)
     ], TinymceComponent.prototype, "config", void 0);
     TinymceComponent = TinymceComponent_1 = __decorate([

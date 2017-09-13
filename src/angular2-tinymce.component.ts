@@ -1,4 +1,4 @@
-import {Component, OnDestroy, AfterViewInit, forwardRef, NgZone, Inject, Input, OnInit} from '@angular/core';
+import {Component, OnDestroy, AfterViewInit, forwardRef, NgZone, Inject, Input} from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { TinymceDefaultOptions } from './angular2-tinymce.default';
 import { TinymceOptions } from './angular2-tinymce.config.interface';
@@ -29,7 +29,7 @@ const noop = () => {
 		}
 	]
 })
-export class TinymceComponent implements ControlValueAccessor, OnInit, AfterViewInit, OnDestroy {
+export class TinymceComponent implements ControlValueAccessor, AfterViewInit, OnDestroy {
 	public elementId: string = 'tiny-'+Math.random().toString(36).substring(2);
 	public editor: any;
 	@Input() public config: TinymceOptions;
@@ -46,7 +46,7 @@ export class TinymceComponent implements ControlValueAccessor, OnInit, AfterView
 		//
 	}
 
-	ngOnInit() {
+	ngAfterViewInit() {
         this.mergedOptions = Object.assign(new TinymceDefaultOptions(), this.options, this.config);
         this.mergedOptions.selector = '#' + this.elementId;
         this.mergedOptions.setup = editor => {
@@ -67,9 +67,6 @@ export class TinymceComponent implements ControlValueAccessor, OnInit, AfterView
         if (this.options.auto_focus) {
             this.mergedOptions.auto_focus = this.elementId;
         }
-	}
-
-	ngAfterViewInit() {
 		if (this.mergedOptions.baseURL) {
 			tinymce.baseURL = this.mergedOptions.baseURL;
 		}
