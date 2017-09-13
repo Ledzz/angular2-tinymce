@@ -27,16 +27,16 @@ require("tinymce/plugins/code/plugin.js");
 var noop = function () {
 };
 var TinymceComponent = /** @class */ (function () {
-    function TinymceComponent(zone, defaultConfig) {
+    function TinymceComponent(zone, options) {
         var _this = this;
         this.zone = zone;
-        this.defaultConfig = defaultConfig;
+        this.options = options;
         this.elementId = 'tiny-' + Math.random().toString(36).substring(2);
         this.onTouchedCallback = noop;
         this.onChangeCallback = noop;
-        this.options = Object.assign(new angular2_tinymce_default_1.TinymceDefaultOptions(), this.defaultConfig, this.config);
-        this.options.selector = '#' + this.elementId;
-        this.options.setup = function (editor) {
+        this.mergedOptions = Object.assign(new angular2_tinymce_default_1.TinymceDefaultOptions(), this.options, this.config);
+        this.mergedOptions.selector = '#' + this.elementId;
+        this.mergedOptions.setup = function (editor) {
             _this.editor = editor;
             editor.on('change keyup', function () {
                 var content = editor.getContent();
@@ -46,22 +46,22 @@ var TinymceComponent = /** @class */ (function () {
                 _this.options.setup(editor);
             }
         };
-        this.options.init_instance_callback = function (editor) {
+        this.mergedOptions.init_instance_callback = function (editor) {
             editor && _this.value && editor.setContent(_this.value);
             if (typeof _this.options.init_instance_callback === 'function') {
                 _this.options.init_instance_callback(editor);
             }
         };
         if (this.options.auto_focus) {
-            this.options.auto_focus = this.elementId;
+            this.mergedOptions.auto_focus = this.elementId;
         }
     }
     TinymceComponent_1 = TinymceComponent;
     TinymceComponent.prototype.ngAfterViewInit = function () {
-        if (this.options.baseURL) {
-            tinymce.baseURL = this.options.baseURL;
+        if (this.mergedOptions.baseURL) {
+            tinymce.baseURL = this.mergedOptions.baseURL;
         }
-        tinymce.init(this.options);
+        tinymce.init(this.mergedOptions);
     };
     TinymceComponent.prototype.ngOnDestroy = function () {
         tinymce.remove(this.editor);

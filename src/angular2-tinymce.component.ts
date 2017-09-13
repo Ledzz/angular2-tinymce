@@ -38,14 +38,14 @@ export class TinymceComponent implements ControlValueAccessor, AfterViewInit, On
 	private onChangeCallback: (_: any) => void = noop;
 	private innerValue: string;
 
-	private options: any;
+	private mergedOptions: any;
 	constructor(
 		private zone: NgZone,
-		@Inject('TINYMCE_CONFIG') private defaultConfig: TinymceOptions
+		@Inject('TINYMCE_CONFIG') private options: TinymceOptions
 	) {
-		this.options = Object.assign(new TinymceDefaultOptions(), this.defaultConfig, this.config);
-		this.options.selector = '#' + this.elementId;
-		this.options.setup = editor => {
+		this.mergedOptions = Object.assign(new TinymceDefaultOptions(), this.options, this.config);
+		this.mergedOptions.selector = '#' + this.elementId;
+		this.mergedOptions.setup = editor => {
 			this.editor = editor;
 			editor.on('change keyup', () => {
 				const content = editor.getContent();
@@ -55,23 +55,23 @@ export class TinymceComponent implements ControlValueAccessor, AfterViewInit, On
 				this.options.setup(editor);
 			}
 		}
-		this.options.init_instance_callback = editor => {
+		this.mergedOptions.init_instance_callback = editor => {
 			editor && this.value && editor.setContent(this.value)
 			if (typeof this.options.init_instance_callback === 'function') {
 				this.options.init_instance_callback(editor);
 			}
 		}
 		if (this.options.auto_focus) {
-			this.options.auto_focus = this.elementId;
+			this.mergedOptions.auto_focus = this.elementId;
 		}
 	}
 
 
 	ngAfterViewInit() {
-		if (this.options.baseURL) {
-			tinymce.baseURL = this.options.baseURL;
+		if (this.mergedOptions.baseURL) {
+			tinymce.baseURL = this.mergedOptions.baseURL;
 		}
-		tinymce.init(this.options);
+		tinymce.init(this.mergedOptions);
 	}
 
 	ngOnDestroy() {
