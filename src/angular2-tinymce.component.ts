@@ -1,4 +1,4 @@
-import {Component, OnDestroy, AfterViewInit, forwardRef, NgZone, Inject, Input} from '@angular/core';
+import {Component, OnDestroy, AfterViewInit, forwardRef, NgZone, Inject, Input, OnInit} from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { TinymceDefaultOptions } from './angular2-tinymce.default';
 import { TinymceOptions } from './angular2-tinymce.config.interface';
@@ -29,10 +29,10 @@ const noop = () => {
 		}
 	]
 })
-export class TinymceComponent implements ControlValueAccessor, AfterViewInit, OnDestroy {
+export class TinymceComponent implements ControlValueAccessor, OnInit, AfterViewInit, OnDestroy {
 	public elementId: string = 'tiny-'+Math.random().toString(36).substring(2);
 	public editor: any;
-	@Input() config: TinymceOptions;
+	@Input() public config: TinymceOptions;
 
 	private onTouchedCallback: () => void = noop;
 	private onChangeCallback: (_: any) => void = noop;
@@ -43,29 +43,31 @@ export class TinymceComponent implements ControlValueAccessor, AfterViewInit, On
 		private zone: NgZone,
 		@Inject('TINYMCE_CONFIG') private options: TinymceOptions
 	) {
-		this.mergedOptions = Object.assign(new TinymceDefaultOptions(), this.options, this.config);
-		this.mergedOptions.selector = '#' + this.elementId;
-		this.mergedOptions.setup = editor => {
-			this.editor = editor;
-			editor.on('change keyup', () => {
-				const content = editor.getContent();
-				this.value = content;
-			});
-			if (typeof this.options.setup === 'function') {
-				this.options.setup(editor);
-			}
-		}
-		this.mergedOptions.init_instance_callback = editor => {
-			editor && this.value && editor.setContent(this.value)
-			if (typeof this.options.init_instance_callback === 'function') {
-				this.options.init_instance_callback(editor);
-			}
-		}
-		if (this.options.auto_focus) {
-			this.mergedOptions.auto_focus = this.elementId;
-		}
+		//
 	}
 
+	ngOnInit() {
+        this.mergedOptions = Object.assign(new TinymceDefaultOptions(), this.options, this.config);
+        this.mergedOptions.selector = '#' + this.elementId;
+        this.mergedOptions.setup = editor => {
+            this.editor = editor;
+            editor.on('change keyup', () => {
+                this.value = editor.getContent();
+            });
+            if (typeof this.options.setup === 'function') {
+                this.options.setup(editor);
+            }
+        };
+        this.mergedOptions.init_instance_callback = editor => {
+            editor && this.value && editor.setContent(this.value);
+            if (typeof this.options.init_instance_callback === 'function') {
+                this.options.init_instance_callback(editor);
+            }
+        };
+        if (this.options.auto_focus) {
+            this.mergedOptions.auto_focus = this.elementId;
+        }
+	}
 
 	ngAfterViewInit() {
 		if (this.mergedOptions.baseURL) {
@@ -90,7 +92,7 @@ export class TinymceComponent implements ControlValueAccessor, AfterViewInit, On
 			this.zone.run(() => {
 				this.onChangeCallback(v);
 			});
-			
+
 		}
 	}
 	// From ControlValueAccessor interface

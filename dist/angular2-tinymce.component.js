@@ -28,19 +28,22 @@ var noop = function () {
 };
 var TinymceComponent = /** @class */ (function () {
     function TinymceComponent(zone, options) {
-        var _this = this;
         this.zone = zone;
         this.options = options;
         this.elementId = 'tiny-' + Math.random().toString(36).substring(2);
         this.onTouchedCallback = noop;
         this.onChangeCallback = noop;
+        //
+    }
+    TinymceComponent_1 = TinymceComponent;
+    TinymceComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.mergedOptions = Object.assign(new angular2_tinymce_default_1.TinymceDefaultOptions(), this.options, this.config);
         this.mergedOptions.selector = '#' + this.elementId;
         this.mergedOptions.setup = function (editor) {
             _this.editor = editor;
             editor.on('change keyup', function () {
-                var content = editor.getContent();
-                _this.value = content;
+                _this.value = editor.getContent();
             });
             if (typeof _this.options.setup === 'function') {
                 _this.options.setup(editor);
@@ -55,8 +58,7 @@ var TinymceComponent = /** @class */ (function () {
         if (this.options.auto_focus) {
             this.mergedOptions.auto_focus = this.elementId;
         }
-    }
-    TinymceComponent_1 = TinymceComponent;
+    };
     TinymceComponent.prototype.ngAfterViewInit = function () {
         if (this.mergedOptions.baseURL) {
             tinymce.baseURL = this.mergedOptions.baseURL;

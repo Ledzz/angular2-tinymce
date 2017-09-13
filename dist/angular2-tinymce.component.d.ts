@@ -1,4 +1,4 @@
-import { OnDestroy, AfterViewInit, NgZone } from '@angular/core';
+import { OnDestroy, AfterViewInit, NgZone, OnInit } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { TinymceOptions } from './angular2-tinymce.config.interface';
 import 'tinymce/tinymce.min';
@@ -10,7 +10,7 @@ import 'tinymce/plugins/advlist/plugin.js';
 import 'tinymce/plugins/autoresize/plugin.js';
 import 'tinymce/plugins/lists/plugin.js';
 import 'tinymce/plugins/code/plugin.js';
-export declare class TinymceComponent implements ControlValueAccessor, AfterViewInit, OnDestroy {
+export declare class TinymceComponent implements ControlValueAccessor, OnInit, AfterViewInit, OnDestroy {
     private zone;
     private options;
     elementId: string;
@@ -21,6 +21,7 @@ export declare class TinymceComponent implements ControlValueAccessor, AfterView
     private innerValue;
     private mergedOptions;
     constructor(zone: NgZone, options: TinymceOptions);
+    ngOnInit(): void;
     ngAfterViewInit(): void;
     ngOnDestroy(): void;
     value: any;
