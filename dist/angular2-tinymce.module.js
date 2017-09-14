@@ -11,9 +11,10 @@ var common_1 = require("@angular/common");
 var angular2_tinymce_component_1 = require("./angular2-tinymce.component");
 var forms_1 = require("@angular/forms");
 var angular2_tinymce_default_1 = require("./angular2-tinymce.default");
-var TinymceModule = TinymceModule_1 = (function () {
+var TinymceModule = /** @class */ (function () {
     function TinymceModule() {
     }
+    TinymceModule_1 = TinymceModule;
     TinymceModule.withConfig = function (userConfig) {
         if (userConfig === void 0) { userConfig = {}; }
         return {
@@ -23,26 +24,26 @@ var TinymceModule = TinymceModule_1 = (function () {
             ]
         };
     };
+    TinymceModule = TinymceModule_1 = __decorate([
+        core_1.NgModule({
+            imports: [
+                common_1.CommonModule,
+                forms_1.FormsModule,
+                forms_1.ReactiveFormsModule
+            ],
+            declarations: [
+                angular2_tinymce_component_1.TinymceComponent
+            ],
+            exports: [
+                angular2_tinymce_component_1.TinymceComponent
+            ],
+            providers: [
+                { provide: 'TINYMCE_CONFIG', useClass: angular2_tinymce_default_1.TinymceDefaultOptions }
+            ]
+        })
+    ], TinymceModule);
     return TinymceModule;
+    var TinymceModule_1;
 }());
-TinymceModule = TinymceModule_1 = __decorate([
-    core_1.NgModule({
-        imports: [
-            common_1.CommonModule,
-            forms_1.FormsModule,
-            forms_1.ReactiveFormsModule
-        ],
-        declarations: [
-            angular2_tinymce_component_1.TinymceComponent
-        ],
-        exports: [
-            angular2_tinymce_component_1.TinymceComponent
-        ],
-        providers: [
-            { provide: 'TINYMCE_CONFIG', useClass: angular2_tinymce_default_1.TinymceDefaultOptions }
-        ]
-    })
-], TinymceModule);
 exports.TinymceModule = TinymceModule;
-var TinymceModule_1;
 //# sourceMappingURL=angular2-tinymce.module.js.map
