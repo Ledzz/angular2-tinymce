@@ -105,4 +105,11 @@ export interface TinymceOptions {
     nowrap?: boolean;
     object_resizing?: boolean | string;
     type_ahead_urls?: boolean;
+    default_link_target?: string;
+    link_assume_external_targets?: boolean;
+    target_list?: Array<TargetList>;
+}
+export interface TargetList {
+    title: string;
+    value: string;
 }
