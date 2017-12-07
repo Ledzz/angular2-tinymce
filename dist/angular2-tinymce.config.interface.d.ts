@@ -108,6 +108,7 @@ export interface TinymceOptions {
     default_link_target?: string;
     link_assume_external_targets?: boolean;
     target_list?: Array<TargetList>;
+    image_dimensions?: boolean;
 }
 export interface TargetList {
     title: string;
