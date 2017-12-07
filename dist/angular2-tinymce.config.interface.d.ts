@@ -107,10 +107,11 @@ export interface TinymceOptions {
     type_ahead_urls?: boolean;
     default_link_target?: string;
     link_assume_external_targets?: boolean;
-    target_list?: Array<TargetList>;
+    target_list?: Array<TitleValue>;
     image_dimensions?: boolean;
+    image_class_list?: Array<TitleValue>;
 }
-export interface TargetList {
+export interface TitleValue {
     title: string;
     value: string;
 }
