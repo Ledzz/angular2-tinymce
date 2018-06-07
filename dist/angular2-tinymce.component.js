@@ -26,41 +26,42 @@ require("tinymce/plugins/lists/plugin.js");
 require("tinymce/plugins/code/plugin.js");
 var noop = function () {
 };
-var TinymceComponent = TinymceComponent_1 = (function () {
-    function TinymceComponent(zone, config) {
-        var _this = this;
+var TinymceComponent = /** @class */ (function () {
+    function TinymceComponent(zone, options) {
         this.zone = zone;
-        this.config = config;
+        this.options = options;
         this.elementId = 'tiny-' + Math.random().toString(36).substring(2);
         this.onTouchedCallback = noop;
         this.onChangeCallback = noop;
-        this.options = Object.assign(new angular2_tinymce_default_1.TinymceDefaultOptions(), this.config);
-        this.options.selector = '#' + this.elementId;
-        this.options.setup = function (editor) {
+        //
+    }
+    TinymceComponent_1 = TinymceComponent;
+    TinymceComponent.prototype.ngAfterViewInit = function () {
+        var _this = this;
+        this.mergedOptions = Object.assign(new angular2_tinymce_default_1.TinymceDefaultOptions(), this.options, this.config);
+        this.mergedOptions.selector = '#' + this.elementId;
+        this.mergedOptions.setup = function (editor) {
             _this.editor = editor;
             editor.on('change keyup', function () {
-                var content = editor.getContent();
-                _this.value = content;
+                _this.value = editor.getContent();
             });
-            if (typeof _this.config.setup === 'function') {
-                _this.config.setup(editor);
+            if (typeof _this.options.setup === 'function') {
+                _this.options.setup(editor);
             }
         };
-        this.options.init_instance_callback = function (editor) {
+        this.mergedOptions.init_instance_callback = function (editor) {
             editor && _this.value && editor.setContent(_this.value);
-            if (typeof _this.config.init_instance_callback === 'function') {
-                _this.config.init_instance_callback(editor);
+            if (typeof _this.options.init_instance_callback === 'function') {
+                _this.options.init_instance_callback(editor);
             }
         };
-        if (this.config.auto_focus) {
-            this.options.auto_focus = this.elementId;
+        if (this.options.auto_focus) {
+            this.mergedOptions.auto_focus = this.elementId;
         }
-    }
-    TinymceComponent.prototype.ngAfterViewInit = function () {
-        if (this.options.baseURL) {
-            tinymce.baseURL = this.options.baseURL;
+        if (this.mergedOptions.baseURL) {
+            tinymce.baseURL = this.mergedOptions.baseURL;
         }
-        tinymce.init(this.options);
+        tinymce.init(this.mergedOptions);
     };
     TinymceComponent.prototype.ngOnDestroy = function () {
         tinymce.remove(this.editor);
@@ -88,7 +89,10 @@ var TinymceComponent = TinymceComponent_1 = (function () {
     TinymceComponent.prototype.writeValue = function (value) {
         if (value !== this.innerValue) {
             this.innerValue = value;
-            this.editor && this.editor.setContent(value);
+            if (!value) {
+                value = '';
+            }
+            this.editor && this.editor.initialized && this.editor.setContent(value);
         }
     };
     TinymceComponent.prototype.registerOnChange = function (fn) {
@@ -97,23 +101,27 @@ var TinymceComponent = TinymceComponent_1 = (function () {
     TinymceComponent.prototype.registerOnTouched = function (fn) {
         this.onTouchedCallback = fn;
     };
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Object)
+    ], TinymceComponent.prototype, "config", void 0);
+    TinymceComponent = TinymceComponent_1 = __decorate([
+        core_1.Component({
+            selector: 'app-tinymce',
+            template: '<div id="{{elementId}}"></div>',
+            providers: [
+                {
+                    provide: forms_1.NG_VALUE_ACCESSOR,
+                    useExisting: core_1.forwardRef(function () { return TinymceComponent_1; }),
+                    multi: true
+                }
+            ]
+        }),
+        __param(1, core_1.Inject('TINYMCE_CONFIG')),
+        __metadata("design:paramtypes", [core_1.NgZone, Object])
+    ], TinymceComponent);
     return TinymceComponent;
+    var TinymceComponent_1;
 }());
-TinymceComponent = TinymceComponent_1 = __decorate([
-    core_1.Component({
-        selector: 'app-tinymce',
-        template: '<div id="{{elementId}}"></div>',
-        providers: [
-            {
-                provide: forms_1.NG_VALUE_ACCESSOR,
-                useExisting: core_1.forwardRef(function () { return TinymceComponent_1; }),
-                multi: true
-            }
-        ]
-    }),
-    __param(1, core_1.Inject('TINYMCE_CONFIG')),
-    __metadata("design:paramtypes", [core_1.NgZone, Object])
-], TinymceComponent);
 exports.TinymceComponent = TinymceComponent;
-var TinymceComponent_1;
 //# sourceMappingURL=angular2-tinymce.component.js.map

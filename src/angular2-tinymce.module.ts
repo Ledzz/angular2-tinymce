@@ -1,4 +1,4 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import {NgModule, ModuleWithProviders} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { TinymceComponent } from './angular2-tinymce.component';
