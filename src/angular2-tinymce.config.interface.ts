@@ -13,6 +13,7 @@ export interface TinymceOptions {
 	external_plugins?: string;
 	hidden_input?: string;
 	// Editor appearance
+	branding?: boolean; 
 	color_picker_callback?: any;
 	elementpath?: boolean;
 	event_root?: string;
