@@ -13,6 +13,7 @@ export interface TinymceOptions {
 	external_plugins?: string;
 	hidden_input?: string;
 	// Editor appearance
+	branding?: boolean; 
 	color_picker_callback?: any;
 	elementpath?: boolean;
 	event_root?: string;
@@ -37,6 +38,7 @@ export interface TinymceOptions {
 	theme?: string;
 	toolbar?: boolean | string | Array<string>;
 	width?: number;
+	branding: boolean;
 	// Content appearance
 	body_class?: string;
 	body_id?: string;
@@ -114,15 +116,18 @@ export interface TinymceOptions {
 	end_container_on_empty_block?: boolean;
 	nowrap?: boolean;
 	object_resizing?: boolean | string;
+  // Allow paste images
+	paste_data_images?: boolean;
+  
 	type_ahead_urls?: boolean;
-    default_link_target?: string;
-    link_assume_external_targets?: boolean;
-    target_list?: Array<TitleValue>;
-    image_dimensions?: boolean;
-    image_class_list?: Array<TitleValue>;
+  default_link_target?: string;
+  link_assume_external_targets?: boolean;
+  target_list?: Array<TitleValue>;
+  image_dimensions?: boolean;
+  image_class_list?: Array<TitleValue>;
 }
 
 export interface TitleValue {
-    title: string;
-    value: string;
+  title: string;
+  value: string;
 }

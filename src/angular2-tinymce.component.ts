@@ -43,7 +43,27 @@ export class TinymceComponent implements ControlValueAccessor, AfterViewInit, On
 		private zone: NgZone,
 		@Inject('TINYMCE_CONFIG') private options: TinymceOptions
 	) {
-		//
+		this.options = Object.assign(new TinymceDefaultOptions(), this.config);
+		this.options.selector = '#' + this.elementId;
+		this.options.setup = editor => {
+			editor.on('change keyup', () => {
+				const content = editor.getContent();
+				this.value = content;
+			});
+			if (typeof this.config.setup === 'function') {
+				this.config.setup(editor);
+			}
+		}
+		this.options.init_instance_callback = editor => {
+			editor && this.value && editor.setContent(this.value)
+			if (typeof this.config.init_instance_callback === 'function') {
+				this.config.init_instance_callback(editor);
+			}
+			this.editor = editor;
+		}
+		if (this.config.auto_focus) {
+			this.options.auto_focus = this.elementId;
+		}
 	}
 
 	ngAfterViewInit() {
