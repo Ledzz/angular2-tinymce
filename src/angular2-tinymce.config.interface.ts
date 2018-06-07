@@ -37,6 +37,7 @@ export interface TinymceOptions {
 	theme?: string;
 	toolbar?: boolean | string | Array<string>;
 	width?: number;
+	branding: boolean;
 	// Content appearance
 	body_class?: string;
 	body_id?: string;
