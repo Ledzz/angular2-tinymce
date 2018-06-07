@@ -13,6 +13,7 @@ export interface TinymceOptions {
 	external_plugins?: string;
 	hidden_input?: string;
 	// Editor appearance
+	branding?: boolean; 
 	color_picker_callback?: any;
 	elementpath?: boolean;
 	event_root?: string;
@@ -37,6 +38,7 @@ export interface TinymceOptions {
 	theme?: string;
 	toolbar?: boolean | string | Array<string>;
 	width?: number;
+	branding: boolean;
 	// Content appearance
 	body_class?: string;
 	body_id?: string;
