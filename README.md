@@ -1,27 +1,99 @@
-# Angular2Tinymce
+# angular2-tinymce
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+`Now compatible with Angular 6!`
 
-## Development server
+## Usage
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+First, install tinymce and this lib via npm:
+```
+npm install --save tinymce angular2-tinymce
+```
 
-## Code scaffolding
+Then copy lightgray skin files from `node_modules/tinymce` to the `/assets` folder. So, i.e. there must be available `/assets/tinymce/skins/lightgray/skin.min.css` and `/assets/tinymce/skins/lightgray/content.min.css` file.
+You can override skin path by specifying `skin_url` option (default `/assets/tinymce/skins/lightgray`).
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Import `TinymceModule` in you `app.module.ts` like this:
+```typescript
+import { TinymceModule } from 'angular2-tinymce';
 
-## Build
+@NgModule({
+  imports: [
+    ...
+    TinymceModule.withConfig({})
+  ],
+  ...
+})
+export class AppModule { }
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Then use it:
+```html
+<app-tinymce [formControl]='contentControl'></app-tinymce>
+```
+or
+```html
+<app-tinymce [(ngModel)]='content'></app-tinymce>
+```
 
-## Running unit tests
+## Configure
+You can configure TinyMCE globally:
+```typescript
+import { TinymceModule } from 'angular2-tinymce';
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+@NgModule({
+  imports: [
+    ...
+    TinymceModule.withConfig({
+      ...  //any TinyMCE config here
+    })
+  ],
+  ...
+})
+export class AppModule { }
+```
+Please note that config is extended a bit.
 
-## Running end-to-end tests
+- Besides the original config angular2-tinymce supports `baseURL` for providing, i.e., custom plugins paths.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+- `auto_focus` option is boolean instead of string.
+- You cannot specify `selector` option (and you don't need to, right?).
+- `setup` and `init_instance_callback` are executed after the components'.
+- You can view more info about supported options [here] (src/angular2-tinymce.config.interface.ts)
 
-## Further help
+## Plugins
+If you need other plugins than standart (`link paste table advlist autoresize lists code`) you should create plugins folder in the `baseURL` (default '/assets/tinymce') and place your plugins in it.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+**Example:** 
+Place emoticons plugin to an `/assets/tinymce/plugins` folder, then:
+```typescript
+import { TinymceModule } from 'angular2-tinymce';
+
+@NgModule({
+  imports: [
+    ...
+    TinymceModule.withConfig({
+      plugins: ['emoticons'],
+      toolbar: 'emoticons'
+    })
+  ],
+  ...
+})
+export class AppModule { }
+```
+
+Alternativaly you can `npm install tinymce --save` and import plugins like that:
+```typescript
+import 'tinymce/plugins/emoticons/plugin.js';
+```
+
+## Contributing
+Please feel free to leave your PRs, issues, feature requests.
+
+## Upcoming features
+- [x] Tinymce configuration
+- [x] Aot support
+- [ ] Per-editor configuration
+- [ ] Add github pages demo
+- [ ] File uploading
+- [ ] Events
+- [ ] Tests

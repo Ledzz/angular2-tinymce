@@ -125,6 +125,46 @@
           }
         }
       }
+    },
+    "angular2-tinymce-lib": {
+      "root": "projects/angular2-tinymce-lib",
+      "sourceRoot": "projects/angular2-tinymce-lib/src",
+      "projectType": "library",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/angular2-tinymce-lib/tsconfig.lib.json",
+            "project": "projects/angular2-tinymce-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/angular2-tinymce-lib/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/angular2-tinymce-lib/src/test.ts",
+            "tsConfig": "projects/angular2-tinymce-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/angular2-tinymce-lib/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/angular2-tinymce-lib/tsconfig.lib.json",
+              "projects/angular2-tinymce-lib/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "angular2-tinymce"

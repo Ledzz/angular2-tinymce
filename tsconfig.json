@@ -15,6 +15,14 @@
     "lib": [
       "es2017",
       "dom"
-    ]
+    ],
+    "paths": {
+      "angular2-tinymce": [
+        "dist/angular2-tinymce-lib"
+      ],
+      "angular2-tinymce/*": [
+        "dist/angular2-tinymce-lib/*"
+      ]
+    }
   }
 }
