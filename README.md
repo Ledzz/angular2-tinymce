@@ -12,6 +12,14 @@ npm install --save tinymce angular2-tinymce
 Then copy lightgray skin files from `node_modules/tinymce` to the `/assets` folder. So, i.e. there must be available `/assets/tinymce/skins/lightgray/skin.min.css` and `/assets/tinymce/skins/lightgray/content.min.css` file.
 You can override skin path by specifying `skin_url` option (default `/assets/tinymce/skins/lightgray`).
 
+To support AOT mode in Angular 6 and higher you also need to include tinymce in your scripts section in angular.json config file:
+```json
+ "scripts": [
+    "node_modules/tinymce/tinymce.min.js",
+    ...
+]
+```
+
 Import `TinymceModule` in you `app.module.ts` like this:
 ```typescript
 import { TinymceModule } from 'angular2-tinymce';
