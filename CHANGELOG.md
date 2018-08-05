@@ -1,3 +1,7 @@
+## 3.1.1 (2018-08-05)
+
+* Add readme to npm release
+
 ## 3.1.0 (2018-08-05)
 
 * Update to latest Angular

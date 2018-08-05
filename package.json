@@ -10,7 +10,8 @@
 		"publish": "npm publish dist/angular2-tinymce-lib",
 		"test": "ng test",
 		"lint": "ng lint",
-		"e2e": "ng e2e"
+		"e2e": "ng e2e",
+		"prepublishOnly": "cp README.md dist/angular2-tinymce-lib"
 	},
 	"private": true,
 	"dependencies": {

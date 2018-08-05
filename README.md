@@ -2,6 +2,8 @@
 
 `Now compatible with Angular 6!`
 
+[Demo](https://angular2-tinymce.surge.sh/)
+
 ## Usage
 
 First, install tinymce and this lib via npm:
