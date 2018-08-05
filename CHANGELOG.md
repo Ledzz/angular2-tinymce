@@ -2,6 +2,8 @@
 
 * Update to latest Angular
 * Add CI and small demo page
+* Allow to extend config interface as needed
+
 
 ## 3.0.0 (2018-06-09)
 

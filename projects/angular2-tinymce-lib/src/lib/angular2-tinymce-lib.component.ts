@@ -22,6 +22,7 @@ const noop = () => {
 @Component({
 	selector: 'app-tinymce',
 	template: '<div id="{{elementId}}"></div>',
+	exportAs: 'tinymce',
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
