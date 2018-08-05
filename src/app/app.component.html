@@ -1,3 +1,17 @@
 <h1>Demo</h1>
+
+<h2>Simple</h2>
+<code>
+	&lt;app-tinymce [(ngModel)]='title' #tinymce='tinymce'&gt;&lt;/app-tinymce&gt;
+</code>
+<br><br>
 <app-tinymce [(ngModel)]='title' #tinymce='tinymce'></app-tinymce>
 <pre>{{title}}</pre>
+
+<h2>Override options</h2>
+<code>
+	&lt;app-tinymce [(ngModel)]=&quot;title&quot; [options]=&quot;&#123;branding:false&#125;&quot;&gt;&lt;/app-tinymce&gt;
+</code>
+<br><br>
+<app-tinymce [(ngModel)]='title' [options]='{ branding:false }'></app-tinymce>
+

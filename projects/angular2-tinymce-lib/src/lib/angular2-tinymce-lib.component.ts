@@ -1,4 +1,4 @@
-import { Component, OnDestroy, AfterViewInit, forwardRef, NgZone, Inject, Input } from '@angular/core';
+import { Component, OnDestroy, AfterViewInit, forwardRef, NgZone, Inject, Input, OnInit } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { TinymceDefaultOptions } from './angular2-tinymce-lib.default';
 import { TinymceOptions } from './angular2-tinymce-lib.config.interface';
@@ -31,7 +31,9 @@ const noop = () => {
 		}
 	]
 })
-export class TinymceComponent implements ControlValueAccessor, AfterViewInit, OnDestroy {
+export class TinymceComponent implements ControlValueAccessor, AfterViewInit, OnInit, OnDestroy {
+	@Input('options') optionsOverride: TinymceOptions;
+
 	public elementId: string = 'tiny-' + Math.random().toString(36).substring(2);
 	public editor: any;
 
@@ -39,11 +41,17 @@ export class TinymceComponent implements ControlValueAccessor, AfterViewInit, On
 	private onChangeCallback: (_: any) => void = noop;
 	private innerValue: string;
 
+	private options: TinymceOptions;
+
 	constructor(
 		private zone: NgZone,
-		@Inject('TINYMCE_CONFIG') private options: TinymceOptions
+		@Inject('TINYMCE_CONFIG') private globalOptions: TinymceOptions
 	) {
-		this.options = Object.assign(new TinymceDefaultOptions(), this.options);
+
+	}
+
+	ngOnInit() {
+		this.options = Object.assign(new TinymceDefaultOptions(), this.globalOptions, this.optionsOverride);
 		this.options.selector = '#' + this.elementId;
 		this.options.setup = editor => {
 			editor.on('change keyup', () => {

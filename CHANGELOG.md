@@ -1,3 +1,6 @@
+## 3.2 (2018-08-05)
+* Add per-editor configuration support
+
 ## 3.1.1, 3.1.2 (2018-08-05)
 
 * Add readme to npm release

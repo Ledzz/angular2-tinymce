@@ -80,10 +80,15 @@ Please note that config is extended a bit.
 - `auto_focus` option is boolean instead of string.
 - You cannot specify `selector` option (and you don't need to, right?).
 - `setup` and `init_instance_callback` are executed after the components'.
-- You can view more info about supported options [here] (src/angular2-tinymce.config.interface.ts)
+- You can view more info about supported options [here](tree/master/src/angular2-tinymce.config.interface.ts)
+
+Also you can override options in each instance like that:
+```typescript
+<app-tinymce [(ngModel)]='title' [options]='{ branding:false }'></app-tinymce>
+```
 
 ## Plugins
-If you need other plugins than standart (`link paste table advlist autoresize lists code`) you should create plugins folder in the `baseURL` (default '/assets/tinymce') and place your plugins in it.
+If you need other plugins than standart (`link paste table advlist autoresize lists code`) you should create plugins folder in the `baseURL` (default `'/assets/tinymce'`) and place your plugins in it.
 
 **Example:** 
 Place emoticons plugin to an `/assets/tinymce/plugins` folder, then:
@@ -116,7 +121,7 @@ Please feel free to leave your PRs, issues, feature requests.
 - [x] Aot support
 - [x] Add demo
 - [x] Add CI
-- [ ] Per-editor configuration
+- [x] Per-editor configuration
 - [ ] File uploading
 - [ ] Events
 - [ ] Tests
