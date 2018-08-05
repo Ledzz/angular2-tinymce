@@ -20,6 +20,8 @@ build:tags:
   artifacts:
     paths:
     - dist
+  tags:
+    - shell
 
 deploy:tags:
   image: node:latest
@@ -33,6 +35,8 @@ deploy:tags:
     - branches
   dependencies:
     - build:tags
+  tags:
+    - shell
 
 build:master:
   image: node:latest
@@ -46,6 +50,8 @@ build:master:
   artifacts:
     paths:
     - dist
+  tags:
+    - shell
 
 deploy:master:
   image: node:latest
@@ -57,3 +63,5 @@ deploy:master:
     - master
   dependencies:
     - build:master
+  tags:
+    - shell
