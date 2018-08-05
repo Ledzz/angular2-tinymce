@@ -100,8 +100,8 @@ Please feel free to leave your PRs, issues, feature requests.
 ## Upcoming features
 - [x] Tinymce configuration
 - [x] Aot support
+- [x] Add demo
 - [ ] Per-editor configuration
-- [ ] Add github pages demo
 - [ ] File uploading
 - [ ] Events
 - [ ] Tests
