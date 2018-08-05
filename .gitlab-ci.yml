@@ -57,7 +57,5 @@ deploy:master:
     - PATH=$(npm bin):$PATH surge --project ./dist/angular2-tinymce --domain angular2-tinymce.surge.sh
   only:
     - master
-  dependencies:
-    - build:master
   tags:
     - shell
