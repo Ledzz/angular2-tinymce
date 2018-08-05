@@ -26,6 +26,7 @@ deploy:tags:
   stage: deploy
   script:
     - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+    - npm run prepublishOnly
     - npm publish dist/angular2-tinymce-lib
   only:
     - /^v.*$/

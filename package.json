@@ -11,7 +11,7 @@
 		"test": "ng test",
 		"lint": "ng lint",
 		"e2e": "ng e2e",
-		"prepare": "cp README.md dist/angular2-tinymce-lib"
+		"prepublishOnly": "cp README.md dist/angular2-tinymce-lib"
 	},
 	"private": true,
 	"dependencies": {
