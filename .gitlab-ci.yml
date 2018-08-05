@@ -1,0 +1,53 @@
+cache:
+  key: ${CI_BUILD_REF_NAME}_1
+  paths:
+    - node_modules/
+
+stages:
+  - build
+  - deploy
+
+build_tags:
+  stage: build
+  script:
+    - npm install
+    - npm run build:library
+  only:
+    - /^v.*$/
+  except:
+    - branches
+  artifacts:
+    paths:
+    - dist
+
+deploy_tags:
+  stage: deploy
+  script:
+    - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+    - npm publish dist/technokratos-angular-ui-kit
+  only:
+    - /^v.*$/
+  except:
+    - branches
+
+build_master:
+  stage: build
+  script:
+    - npm install
+    - npm run build:library
+    - npm run build
+  only:
+    - master
+  artifacts:
+    paths:
+    - dist
+
+deploy_master:
+  stage: deploy
+  script:
+    - mv dist/index.html dist/200.html
+    - PATH=$(npm bin):$PATH surge --project ./dist --domain angular2-tinymce.surge.sh
+  tags:
+    - shell
+  only:
+    - master
