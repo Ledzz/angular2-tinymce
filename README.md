@@ -43,6 +43,18 @@ or
 <app-tinymce [(ngModel)]='content'></app-tinymce>
 ```
 
+You can also use template variable `tinymce` to get instance of tinymce:
+```html
+<app-tinymce [(ngModel)]='content' #tinymce='tinymce'></app-tinymce>
+```
+then in component.ts:
+```typescript
+@ViewChild('tinymce') tinymce;
+ngAfterViewInit() {
+  console.log(this.tinymce);
+}
+```
+
 ## Configure
 You can configure TinyMCE globally:
 ```typescript
