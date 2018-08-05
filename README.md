@@ -101,6 +101,7 @@ Please feel free to leave your PRs, issues, feature requests.
 - [x] Tinymce configuration
 - [x] Aot support
 - [x] Add demo
+- [x] Add CI
 - [ ] Per-editor configuration
 - [ ] File uploading
 - [ ] Events
