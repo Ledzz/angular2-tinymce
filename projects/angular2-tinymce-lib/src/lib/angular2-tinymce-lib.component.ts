@@ -1,9 +1,10 @@
-import {Component, OnDestroy, AfterViewInit, forwardRef, NgZone, Inject, Input} from '@angular/core';
+import { Component, OnDestroy, AfterViewInit, forwardRef, NgZone, Inject, Input } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { TinymceDefaultOptions } from './angular2-tinymce-lib.default';
 import { TinymceOptions } from './angular2-tinymce-lib.config.interface';
 
 import 'tinymce/tinymce.min';
+
 declare var tinymce: any;
 
 import 'tinymce/themes/modern/theme';
@@ -19,88 +20,89 @@ const noop = () => {
 };
 
 @Component({
-  selector: 'app-tinymce',
-  template: '<div id="{{elementId}}"></div>',
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => TinymceComponent),
-      multi: true
-    }
-  ]
+	selector: 'app-tinymce',
+	template: '<div id="{{elementId}}"></div>',
+	providers: [
+		{
+			provide: NG_VALUE_ACCESSOR,
+			useExisting: forwardRef(() => TinymceComponent),
+			multi: true
+		}
+	]
 })
 export class TinymceComponent implements ControlValueAccessor, AfterViewInit, OnDestroy {
-  public elementId: string = 'tiny-'+Math.random().toString(36).substring(2);
-  public editor: any;
+	public elementId: string = 'tiny-' + Math.random().toString(36).substring(2);
+	public editor: any;
 
-  private onTouchedCallback: () => void = noop;
-  private onChangeCallback: (_: any) => void = noop;
-  private innerValue: string;
+	private onTouchedCallback: () => void = noop;
+	private onChangeCallback: (_: any) => void = noop;
+	private innerValue: string;
 
-  constructor(
-    private zone: NgZone,
-    @Inject('TINYMCE_CONFIG') private options: TinymceOptions
-  ) {
-    this.options = Object.assign(new TinymceDefaultOptions(), this.options);
-    this.options.selector = '#' + this.elementId;
-    this.options.setup = editor => {
-      editor.on('change keyup', () => {
-        const content = editor.getContent();
-        this.value = content;
-      });
-    }
-    this.options.init_instance_callback = editor => {
-      if (editor && this.value) {
-        editor.setContent(this.value);
-      }
-      this.editor = editor;
-    }
-  }
+	constructor(
+		private zone: NgZone,
+		@Inject('TINYMCE_CONFIG') private options: TinymceOptions
+	) {
+		this.options = Object.assign(new TinymceDefaultOptions(), this.options);
+		this.options.selector = '#' + this.elementId;
+		this.options.setup = editor => {
+			editor.on('change keyup', () => {
+				const content = editor.getContent();
+				this.value = content;
+			});
+		};
+		this.options.init_instance_callback = editor => {
+			if (editor && this.value) {
+				editor.setContent(this.value);
+			}
+			this.editor = editor;
+		};
+	}
 
-  ngAfterViewInit() {
-    if (this.options.baseURL) {
-      tinymce.baseURL = this.options.baseURL;
-    }
-    tinymce.init(this.options);
-  }
+	ngAfterViewInit() {
+		if (this.options.baseURL) {
+			tinymce.baseURL = this.options.baseURL;
+		}
+		tinymce.init(this.options);
+	}
 
-  ngOnDestroy() {
-    tinymce.remove(this.editor);
-  }
+	ngOnDestroy() {
+		tinymce.remove(this.editor);
+	}
 
-  // get accessor
-  get value(): any {
-    return this.innerValue;
-  };
+	// get accessor
+	get value(): any {
+		return this.innerValue;
+	};
 
-  // set accessor including call the onchange callback
-  set value(v: any) {
-    if (v !== this.innerValue) {
-      this.innerValue = v;
-      this.zone.run(() => {
-        this.onChangeCallback(v);
-      });
+	// set accessor including call the onchange callback
+	set value(v: any) {
+		if (v !== this.innerValue) {
+			this.innerValue = v;
+			this.zone.run(() => {
+				this.onChangeCallback(v);
+			});
 
-    }
-  }
-  // From ControlValueAccessor interface
-  writeValue(value: any) {
-    if (value !== this.innerValue) {
-      this.innerValue = value;
-      if (!value) {
-        value = '';
-      }
-      if (this.editor && this.editor.initialized) {
-        this.editor.setContent(value);
-      }
-    }
-  }
+		}
+	}
 
-  registerOnChange(fn: any) {
-    this.onChangeCallback = fn;
-  }
+	// From ControlValueAccessor interface
+	writeValue(value: any) {
+		if (value !== this.innerValue) {
+			this.innerValue = value;
+			if (!value) {
+				value = '';
+			}
+			if (this.editor && this.editor.initialized) {
+				this.editor.setContent(value);
+			}
+		}
+	}
 
-  registerOnTouched(fn: any) {
-    this.onTouchedCallback = fn;
-  }
+	registerOnChange(fn: any) {
+		this.onChangeCallback = fn;
+	}
+
+	registerOnTouched(fn: any) {
+		this.onTouchedCallback = fn;
+	}
 }
