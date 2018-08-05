@@ -54,7 +54,7 @@ deploy:master:
   stage: deploy
   script:
     - mv dist/angular2-tinymce/index.html dist/angular2-tinymce/200.html
-    - PATH=$(npm bin):$PATH surge --project ./dist/angular2-tinymce --domain angular2-tinymce.surge.sh
+    - PATH=$(npm bin):$PATH surge --project ./dist/angular2-tinymce --domain https://angular2-tinymce.surge.sh
   only:
     - master
   dependencies:
