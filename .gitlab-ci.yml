@@ -8,6 +8,7 @@ stages:
   - deploy
 
 build_tags:
+  image: node:latest
   stage: build
   script:
     - npm install
@@ -21,6 +22,7 @@ build_tags:
     - dist
 
 deploy_tags:
+  image: node:latest
   stage: deploy
   script:
     - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
@@ -31,6 +33,7 @@ deploy_tags:
     - branches
 
 build_master:
+  image: node:latest
   stage: build
   script:
     - npm install
@@ -43,6 +46,7 @@ build_master:
     - dist
 
 deploy_master:
+  image: node:latest
   stage: deploy
   script:
     - mv dist/index.html dist/200.html

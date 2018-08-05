@@ -1,3 +1,8 @@
+## 3.1.0 (2018-08-05)
+
+* Update to latest Angular
+* Add CI and small demo page
+
 ## 3.0.0 (2018-06-09)
 
 * Moved to angular v6 and new CLI. Package is built easily now.
