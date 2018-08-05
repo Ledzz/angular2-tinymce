@@ -7,7 +7,7 @@ stages:
   - build
   - deploy
 
-build_tags:
+build:tags:
   image: node:latest
   stage: build
   script:
@@ -21,18 +21,20 @@ build_tags:
     paths:
     - dist
 
-deploy_tags:
+deploy:tags:
   image: node:latest
   stage: deploy
   script:
     - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
-    - npm publish dist/technokratos-angular-ui-kit
+    - npm publish dist/angular2-tinymce-lib
   only:
     - /^v.*$/
   except:
     - branches
+  dependencies:
+    - build:tags
 
-build_master:
+build:master:
   image: node:latest
   stage: build
   script:
@@ -45,7 +47,7 @@ build_master:
     paths:
     - dist
 
-deploy_master:
+deploy:master:
   image: node:latest
   stage: deploy
   script:
@@ -53,3 +55,5 @@ deploy_master:
     - PATH=$(npm bin):$PATH surge --project ./dist --domain angular2-tinymce.surge.sh
   only:
     - master
+  dependencies:
+    - build:master
