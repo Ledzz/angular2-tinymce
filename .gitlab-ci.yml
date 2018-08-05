@@ -18,7 +18,7 @@ build:tags:
     - branches
   artifacts:
     paths:
-    - dist
+    - dist/
   tags:
     - shell
 
@@ -46,18 +46,18 @@ build:master:
     - master
   artifacts:
     paths:
-    - dist
+    - dist/
   tags:
     - shell
 
 deploy:master:
   stage: deploy
   script:
-    - mv dist/index.html dist/200.html
-    - PATH=$(npm bin):$PATH surge --project ./dist --domain angular2-tinymce.surge.sh
+    - mv dist/angular2-tinymce/index.html dist/angular2-tinymce/200.html
+    - PATH=$(npm bin):$PATH surge --project ./dist/angular2-tinymce --domain angular2-tinymce.surge.sh
   only:
     - master
-#  dependencies:
-#    - build:master
+  dependencies:
+    - build:master
   tags:
     - shell
