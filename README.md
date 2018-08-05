@@ -1,4 +1,4 @@
-# angular2-tinymce
+# angular2-tinymce [![pipeline status](https://gitlab.com/Ledzz/angular2-tinymce/badges/master/pipeline.svg)](https://gitlab.com/Ledzz/angular2-tinymce/commits/master)
 
 `Now compatible with Angular 6!`
 
