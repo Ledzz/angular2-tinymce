@@ -1,32 +1,32 @@
 {
-  "name": "angular2-tinymce",
-  "description": "Angular component for TinyMCE MCE WYSIWYG editor",
-  "keywords": [
-    "angular6",
-    "angular5",
-    "angular4",
-    "angular2",
-    "angular",
-    "component",
-    "module",
-    "tinymce",
-    "wysiwyg",
-    "form-control",
-    "ng-model"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Ledzz/angular2-tinymce.git"
-  },
-  "bugs": {
-    "web": "https://github.com/Ledzz/angular2-tinymce/issues"
-  },
-  "author": "Ledzz",
-  "license": "ISC",
-  "version": "3.0.0",
-  "peerDependencies": {
-    "tinymce": "^4.7.13",
-    "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
-    "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
-  }
+	"name": "angular2-tinymce",
+	"description": "Angular component for TinyMCE MCE WYSIWYG editor",
+	"keywords": [
+		"angular6",
+		"angular5",
+		"angular4",
+		"angular2",
+		"angular",
+		"component",
+		"module",
+		"tinymce",
+		"wysiwyg",
+		"form-control",
+		"ng-model"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Ledzz/angular2-tinymce.git"
+	},
+	"bugs": {
+		"web": "https://github.com/Ledzz/angular2-tinymce/issues"
+	},
+	"author": "Ledzz",
+	"license": "ISC",
+	"version": "3.1.0",
+	"peerDependencies": {
+		"tinymce": "^4.7.13",
+		"@angular/common": "^6.0.0-rc.0 || ^6.0.0",
+		"@angular/core": "^6.0.0-rc.0 || ^6.0.0"
+	}
 }
