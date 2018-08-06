@@ -1,3 +1,6 @@
+## 3.3 (2018-08-06)
+* Add tinymce events outputs
+
 ## 3.2 (2018-08-05)
 * Add per-editor configuration support
 

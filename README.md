@@ -83,8 +83,14 @@ Please note that config is extended a bit.
 - You can view more info about supported options [here](tree/master/src/angular2-tinymce.config.interface.ts)
 
 Also you can override options in each instance like that:
-```typescript
+```html
 <app-tinymce [(ngModel)]='title' [options]='{ branding:false }'></app-tinymce>
+```
+
+## Events
+You can use outputs to catch tinymce events. You can see full list of available outputs [here](blob/master/projects/angular2-tinymce-lib/src/lib/angular2-tinymce-lib.component.ts#L37).
+```html
+<app-tinymce [(ngModel)]='title' (init)='log($event)' (keydown)='log($event)'></app-tinymce>
 ```
 
 ## Plugins
@@ -122,6 +128,7 @@ Please feel free to leave your PRs, issues, feature requests.
 - [x] Add demo
 - [x] Add CI
 - [x] Per-editor configuration
+- [x] Events
+- [ ] Directive
 - [ ] File uploading
-- [ ] Events
 - [ ] Tests

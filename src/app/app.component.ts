@@ -9,9 +9,14 @@ export class AppComponent implements AfterViewInit {
 	@ViewChild('tinymce') tinymce;
 	title = 'app';
 
-	constructor() {}
+	constructor() {
+	}
 
 	ngAfterViewInit() {
 		console.log(this.tinymce);
+	}
+
+	log(w) {
+		console.log(w);
 	}
 }

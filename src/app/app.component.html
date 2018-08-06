@@ -15,3 +15,13 @@
 <br><br>
 <app-tinymce [(ngModel)]='title' [options]='{ branding:false }'></app-tinymce>
 
+<h2>Events (see console)</h2>
+<code>
+	&lt;app-tinymce [(ngModel)]='title' (init)='log($event)' (keydown)='log($event)'&gt;&lt;/app-tinymce&gt;
+</code>
+<br><br>
+<app-tinymce
+	[(ngModel)]='title'
+	(init)='log($event)'
+	(keydown)='log($event)'
+></app-tinymce>
